@@ -1,0 +1,18 @@
+FROM ubuntu:16.04
+
+# chrony and its dependencies
+RUN apt-get update && apt-get install -y \
+    man \
+    dbus \
+    systemd \
+    chrony \
+    adjtimex \
+    && rm -rf /var/lib/apt/lists/*
+
+# common dev tools
+RUN apt-get update && apt-get install -y \
+    nano \
+    && rm -rf /var/lib/apt/lists/*
+
+# config
+COPY chrony.server.conf /etc/chrony/chrony.conf
