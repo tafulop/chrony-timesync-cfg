@@ -3,8 +3,6 @@ FROM ubuntu:16.04
 # chrony and its dependencies
 RUN apt-get update && apt-get install -y \
     man \
-    dbus \
-    systemd \
     chrony \
     adjtimex \
     && rm -rf /var/lib/apt/lists/*
