@@ -1,11 +1,20 @@
 # A simple showcase for setting the RTC clock via chrony daemon.
 
-1. Build Docker image with:
+Prerequisites:
+* The server and the client should not run on the same host
+* The hosts are on the same network, where the server has the IP of 192.168.1.1
+
+
+1. Build Docker images with:
 ```bash
 bash ./build.sh
 ```
 
-2. Start server container (Terminal 1):
+## Server-client images
+
+They meant to be run on different hosts on the same network.
+
+1. Start server container (Host 1):
 
 Hint: if the service command asks for a password, just hit Enter.
 
@@ -13,14 +22,29 @@ Hint: if the service command asks for a password, just hit Enter.
 bash ./server.sh
 ```
 
-3. Start client container (Terminal 2):
+2. Start client container (Host 2):
 
 ```bash
 bash ./client.sh
 ```
 
-4. Change datetime in server container (Terminal 1) and check how the client synchronises to it:
+3. Change datetime in server container (Host 1) and check how the client synchronises to it:
 
 ```bash
 date -s '2021-12-24 12:00:00'
+```
+## Google client
+
+Uses the time.google.com NTP server to synchronise against.
+
+1. Start container:
+
+```bash
+bash ./google-client.sh
+```
+
+2. Change datetime and wait for synchronisation:
+
+```bash
+date -s '2021-12-24 12:00:00' && watch -n 0.1 date
 ```
