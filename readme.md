@@ -1,11 +1,11 @@
-# A simple showcase for setting the RTC clock via chrony daemon.
+# Chrony config examples
 
-Prerequisites:
-* The server and the client should not run on the same host
-* The hosts are on the same network, where the server has the IP of 192.168.1.1
+This repository contains two examples on how to use chrony for NTP-based time synchronization. 
+The first example is a server-client configuration meant to be run on a local network.
+The second example is a simple client, that uses time.google.com to synchronise against.
 
+First of all, you need to build the Docker images:
 
-1. Build Docker images with:
 ```bash
 bash ./build.sh
 ```
@@ -38,6 +38,8 @@ date -s '2021-12-24 12:00:00'
 Uses the time.google.com NTP server to synchronise against.
 
 1. Start container:
+
+Hint: if the service command asks for a password, just hit Enter.
 
 ```bash
 bash ./google-client.sh
